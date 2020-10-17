@@ -1,0 +1,11 @@
+@use '../../styles';
+
+nav {
+    mat-toolbar{
+        .spacer {
+            flex: 1 1 auto;
+        };
+        mat-toolbar-row{
+        }
+    }
+}

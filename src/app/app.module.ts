@@ -9,12 +9,18 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AssetsTableComponent } from './assets-table/assets-table.component';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table'  
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    AssetsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatSliderModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule,
+    CommonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

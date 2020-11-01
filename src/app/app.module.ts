@@ -15,12 +15,14 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { CryptoService } from './services/crypto.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ShortNumberPipe } from './pipes/short-number.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    AssetsTableComponent],
+    AssetsTableComponent,
+    ShortNumberPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,

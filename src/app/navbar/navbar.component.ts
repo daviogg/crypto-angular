@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  navbarTitle :string = "Crypto Angular";
+  navbarTitle = 'Crypto Angular';
   constructor() { }
 
   ngOnInit(): void {

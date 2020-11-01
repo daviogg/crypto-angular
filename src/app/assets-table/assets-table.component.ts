@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { AssetItem, Assets } from '../models/assets';
+import { Assets } from '../models/assets';
 import { CryptoService } from '../services/crypto.service';
 
 @Component({

@@ -12,16 +12,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AssetsTableComponent } from './assets-table/assets-table.component';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table'  
-
-
+import { MatTableModule } from '@angular/material/table';
+import { CryptoService } from './services/crypto.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    AssetsTableComponent
-  ],
+    AssetsTableComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,9 +31,11 @@ import { MatTableModule } from '@angular/material/table'
     MatIconModule,
     MatExpansionModule,
     CommonModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+  CryptoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

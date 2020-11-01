@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AssetItem } from '../models/assets';
+import { AssetItem, Assets } from '../models/assets';
 
 
 @Injectable({
@@ -11,7 +10,7 @@ export class CryptoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getAssetsList(limit: number) : Observable<AssetItem[]>{
-    return this.httpClient.get<AssetItem[]>(`https://api.coincap.io/v2/assets?limit=${limit}`);
+  async getAssetsList(limit: number): Promise<Assets>{
+   return await this.httpClient.get<Assets>(`https://api.coincap.io/v2/assets?limit=${limit}`).toPromise();
   }
 }

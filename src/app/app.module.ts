@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CryptoService } from './services/crypto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ShortNumberPipe } from './pipes/short-number.pipe';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ShortNumberPipe } from './pipes/short-number.pipe';
     MatExpansionModule,
     CommonModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [
   CryptoService],

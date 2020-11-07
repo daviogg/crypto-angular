@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -12,18 +11,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AssetsTableComponent } from './assets-table/assets-table.component';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
 import { CryptoService } from './services/crypto.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ShortNumberPipe } from './pipes/short-number.pipe';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { AssetDetailComponent } from './asset-detail/asset-detail.component';
+import { AssetsTableModule } from './assets-table/assets-table.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    AssetsTableComponent,
-    ShortNumberPipe],
+    AssetDetailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,9 +30,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatIconModule,
     MatExpansionModule,
     CommonModule,
-    MatTableModule,
-    HttpClientModule,
-    MatPaginatorModule
+    AssetsTableModule
   ],
   providers: [
   CryptoService],

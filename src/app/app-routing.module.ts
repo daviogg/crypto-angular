@@ -6,7 +6,7 @@ import { AssetsTableComponent } from './assets-table/assets-table.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: AssetsTableComponent, pathMatch: 'full' },
-  { path: 'detail', component: AssetDetailComponent, pathMatch: 'full'},
+  { path: 'detail/:id', component: AssetDetailComponent, pathMatch: 'full'},
   { path: '**', redirectTo: 'home'}
 ];
 

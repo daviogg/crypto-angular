@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-asset-detail',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssetDetailComponent implements OnInit {
 
-  constructor() { }
+  private id: string;
+
+  constructor(private activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = this.activatedroute.snapshot.paramMap.get('id');
   }
 
 }

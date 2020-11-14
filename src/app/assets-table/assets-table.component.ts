@@ -3,6 +3,7 @@ import { Assets } from '../models/assets';
 import { CryptoService } from '../services/crypto.service';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assets-table',
@@ -13,7 +14,7 @@ export class AssetsTableComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = ['symbol', 'rank', 'name', 'price', 'marketCap', 'supply', 'volume', 'change'];
   dataSource: MatTableDataSource<TableAssetItem>;
 
-  constructor(private service: CryptoService){
+  constructor(private service: CryptoService, private router: Router){
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,6 +48,11 @@ export class AssetsTableComponent implements OnInit, AfterViewInit{
     this.dataSource = new MatTableDataSource<TableAssetItem>(tableObject);
     this.dataSource.paginator = this.paginator;
   }
+
+  NavigateTo(row: any): void{
+    this.router.navigate([`detail/${row.name}`]);
+  }
+
 }
 export interface TableAssetItem {
   symbol: string;

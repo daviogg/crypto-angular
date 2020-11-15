@@ -16,6 +16,17 @@ export interface Assets {
     data: AssetItem[];
 }
 
+export interface History{
+    data: HistoryItem[];
+}
+
+export interface HistoryItem{
+    priceUsd: number;
+    time: number;
+    circulatingSupply: number;
+    date: Date;
+}
+
 export enum Interval {
     m1,
     m5,

@@ -20,11 +20,11 @@ export class CryptoService {
     id: string,
     interval: Interval,
     startDate: Date,
-    endDate: Date ): Promise<any>{
+    endDate: Date ): Promise<History>{
 
       const startUnix = startDate.getTime() / 1000;
       const endUnix = endDate.getTime() / 1000;
-      return await this.httpClient.get(`${this.BaseUrl}/${id}/history?interval=${interval}&start=${startUnix}&end=${endUnix}`)
+      return await this.httpClient.get<History>(`${this.BaseUrl}/${id}/history?interval=${interval}&start=${startUnix}&end=${endUnix}`)
         .toPromise();
   }
 }

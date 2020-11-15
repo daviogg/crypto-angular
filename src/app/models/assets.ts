@@ -15,3 +15,15 @@ export interface AssetItem {
 export interface Assets {
     data: AssetItem[];
 }
+
+export enum Interval {
+    m1,
+    m5,
+    m15,
+    m30,
+    h1,
+    h2,
+    h6,
+    h12,
+    d1
+}

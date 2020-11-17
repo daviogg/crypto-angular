@@ -12,9 +12,7 @@ import { CryptoService } from '../services/crypto.service';
   styleUrls: ['./asset-detail.component.scss']
 })
 export class AssetDetailComponent implements OnInit {
-
-  private id: string;
-
+  
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
@@ -97,7 +95,7 @@ export class AssetDetailComponent implements OnInit {
   constructor(private activatedroute: ActivatedRoute, private service: CryptoService) { }
 
   ngOnInit(): void {
-    this.id = this.activatedroute.snapshot.paramMap.get('id');
+    this.populateChartData();
   }
 
   public randomize(): void {
@@ -145,17 +143,18 @@ export class AssetDetailComponent implements OnInit {
     this.lineChartLabels[2] = ['1st Line', '2nd Line'];
   }
 
-  private populateChartDate(): void {
+  private populateChartData(): void {
     const today = new Date();
     const yesterday = this.getYesterday();
+    const id = this.activatedroute.snapshot.paramMap.get('id');
 
-    const  history = this.service.getAssetHistory(this.id, Interval.d1, yesterday, today);
+    const  history = this.service.getAssetHistory(id, Interval.d1, yesterday, today);
     console.log(history);
   }
 
   private getYesterday(): Date {
     const d = new Date();
-    d.setDate(d.getDate() - 1)
+    d.setDate(d.getDate() - 1);
     return d;
   }
 

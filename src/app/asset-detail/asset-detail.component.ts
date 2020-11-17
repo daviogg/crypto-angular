@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
-import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-asset-detail',
@@ -87,7 +86,7 @@ export class AssetDetailComponent implements OnInit {
   ];
   public lineChartLegend = true;
   public lineChartType: ChartType = 'line';
-  public lineChartPlugins = [pluginAnnotations];
+  public lineChartPlugins = [];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 

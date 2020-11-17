@@ -6,8 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ShortNumberPipe } from '../pipes/short-number.pipe';
 
-
-
 @NgModule({
   declarations: [
     AssetsTableComponent,

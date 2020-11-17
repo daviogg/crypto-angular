@@ -14,12 +14,12 @@ import { CommonModule } from '@angular/common';
 import { CryptoService } from './services/crypto.service';
 import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import { AssetsTableModule } from './assets-table/assets-table.module';
+import { AssetsDetailModule } from './asset-detail/assets-detail.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    AssetDetailComponent],
+    NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +30,8 @@ import { AssetsTableModule } from './assets-table/assets-table.module';
     MatIconModule,
     MatExpansionModule,
     CommonModule,
-    AssetsTableModule
+    AssetsTableModule,
+    AssetsDetailModule
   ],
   providers: [
   CryptoService],

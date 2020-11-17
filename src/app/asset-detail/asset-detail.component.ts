@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import { interval } from 'rxjs';
+import { Interval } from '../models/assets';
+import { CryptoService } from '../services/crypto.service';
 
 @Component({
   selector: 'app-asset-detail',
@@ -11,6 +14,7 @@ import { Color, BaseChartDirective, Label } from 'ng2-charts';
 export class AssetDetailComponent implements OnInit {
 
   private id: string;
+
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
@@ -90,7 +94,7 @@ export class AssetDetailComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
-  constructor(private activatedroute: ActivatedRoute) { }
+  constructor(private activatedroute: ActivatedRoute, private service: CryptoService) { }
 
   ngOnInit(): void {
     this.id = this.activatedroute.snapshot.paramMap.get('id');
@@ -139,6 +143,20 @@ export class AssetDetailComponent implements OnInit {
 
   public changeLabel(): void {
     this.lineChartLabels[2] = ['1st Line', '2nd Line'];
+  }
+
+  private populateChartDate(): void {
+    const today = new Date();
+    const yesterday = this.getYesterday();
+
+    const  history = this.service.getAssetHistory(this.id, Interval.d1, yesterday, today);
+    console.log(history);
+  }
+
+  private getYesterday(): Date {
+    const d = new Date();
+    d.setDate(d.getDate() - 1)
+    return d;
   }
 
 }

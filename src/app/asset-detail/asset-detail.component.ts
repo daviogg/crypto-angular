@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
-import { interval } from 'rxjs';
 import { Interval } from '../models/assets';
 import { CryptoService } from '../services/crypto.service';
 

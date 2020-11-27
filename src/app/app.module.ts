@@ -12,7 +12,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AssetsTableComponent } from './assets-table/assets-table.component';
 import { CommonModule } from '@angular/common';
 import { CryptoService } from './services/crypto.service';
-import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import { AssetsTableModule } from './assets-table/assets-table.module';
 import { AssetsDetailModule } from './asset-detail/assets-detail.module';
 

@@ -22,7 +22,7 @@ export class ShortNumberPipe implements PipeTransform {
       { key: 'K', value: 1000 }
     ];
 
-    for (const item  of powers) {
+    for (const item of powers) {
       let reduced = abs / item.value;
       reduced = Math.round(reduced * rounder) / rounder;
       if (reduced >= 1) {

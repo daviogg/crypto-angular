@@ -146,7 +146,7 @@ export class AssetDetailComponent implements OnInit {
     const yesterday = this.getYesterday();
     const id = this.activatedroute.snapshot.paramMap.get('id');
 
-    const  history = this.service.getAssetHistory(id, Interval.d1, yesterday, today);
+    const history = this.service.getAssetHistory(id, Interval.d1, yesterday, today);
     console.log(history);
   }
 

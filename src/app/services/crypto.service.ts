@@ -10,22 +10,22 @@ export class CryptoService {
 
   private BaseUrl = 'https://api.coincap.io/v2/assets';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
-  async getAssetsList(limit: number): Promise<Assets>{
-   return await this.httpClient.get<Assets>(`${this.BaseUrl}?limit=${limit}`).toPromise();
+  async getAssetsList(limit: number): Promise<Assets> {
+    return await this.httpClient.get<Assets>(`${this.BaseUrl}?limit=${limit}`).toPromise();
   }
 
   async getAssetHistory(
     id: string,
     interval: Interval,
     startDate: Date,
-    endDate: Date ): Promise<History>{
+    endDate: Date): Promise<History> {
 
-      const startUnix = startDate.getTime() / 1000;
-      const endUnix = endDate.getTime() / 1000;
-      return await this.httpClient.get<History>(`${this.BaseUrl}/${id}/history?interval=${interval}&start=${startUnix}&end=${endUnix}`)
-        .toPromise();
+    const startUnix = startDate.getTime() / 1000;
+    const endUnix = endDate.getTime() / 1000;
+    return await this.httpClient.get<History>(`${this.BaseUrl}/${id}/history?interval=${interval}&start=${startUnix}&end=${endUnix}`)
+      .toPromise();
   }
 }
 

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Assets } from '../models/assets';
 import { CryptoService } from '../services/crypto.service';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
   templateUrl: './assets-table.component.html',
   styleUrls: ['./assets-table.component.scss']
 })
-export class AssetsTableComponent implements OnInit, AfterViewInit{
+export class AssetsTableComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['symbol', 'rank', 'name', 'price', 'marketCap', 'supply', 'volume', 'change'];
   dataSource: MatTableDataSource<TableAssetItem>;
 
-  constructor(private service: CryptoService, private router: Router){
+  constructor(private service: CryptoService, private router: Router) {
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -26,21 +26,20 @@ export class AssetsTableComponent implements OnInit, AfterViewInit{
     this.PopulateDataSource();
   }
 
-  private async PopulateDataSource(): Promise<void>
-  {
+  private async PopulateDataSource(): Promise<void> {
     const ds: Assets = await this.service.getAssetsList(50);
-    const tableObject: TableAssetItem[]  = [];
+    const tableObject: TableAssetItem[] = [];
 
     ds.data.forEach(r => {
       const row: TableAssetItem = {
-        name : r.name,
-        change : r.changePercent24Hr,
-        marketCap : r.marketCapUsd,
-        price : r.priceUsd,
-        rank : r.rank,
-        supply : r.supply,
-        symbol : r.symbol,
-        volume : r.volumeUsd24Hr
+        name: r.name,
+        change: r.changePercent24Hr,
+        marketCap: r.marketCapUsd,
+        price: r.priceUsd,
+        rank: r.rank,
+        supply: r.supply,
+        symbol: r.symbol,
+        volume: r.volumeUsd24Hr
       };
       tableObject.push(row);
 
@@ -49,7 +48,7 @@ export class AssetsTableComponent implements OnInit, AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  NavigateTo(row: any): void{
+  NavigateTo(row: any): void {
     this.router.navigate([`detail/${row.name}`]);
   }
 

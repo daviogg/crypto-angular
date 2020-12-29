@@ -16,7 +16,7 @@ export interface Assets {
     data: AssetItem[];
 }
 
-export interface History {
+export interface AssetHistory {
     data: HistoryItem[];
 }
 

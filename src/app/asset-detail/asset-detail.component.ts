@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
-import { Interval } from '../models/assets';
+import { AssetHistory, Interval } from '../models/assets';
 import { CryptoService } from '../services/crypto.service';
 
 @Component({
@@ -12,12 +12,12 @@ import { CryptoService } from '../services/crypto.service';
 })
 export class AssetDetailComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'BTC' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
     { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
   ];
 
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -146,7 +146,15 @@ export class AssetDetailComponent implements OnInit {
     const yesterday = this.getYesterday();
     const id = this.activatedroute.snapshot.paramMap.get('id');
 
-    const history = this.service.getAssetHistory(id, Interval.d1, yesterday, today);
+    const history = this.service.getAssetHistory(id, Interval.d1, yesterday, today)
+      .subscribe((r: AssetHistory) => {
+        r.data.forEach(item => {
+          const stringHour = item.date.getUTCHours();
+          const ampm = stringHour >= 12 ? 'PM' : 'AM';
+          this.lineChartLabels.push(`${stringHour}${ampm}`)
+        });
+      });
+
     console.log(history);
   }
 

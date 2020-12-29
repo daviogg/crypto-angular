@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AssetItem, Assets, Interval } from '../models/assets';
+import { AssetHistory, AssetItem, Assets, Interval } from '../models/assets';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -16,16 +17,15 @@ export class CryptoService {
     return await this.httpClient.get<Assets>(`${this.BaseUrl}?limit=${limit}`).toPromise();
   }
 
-  async getAssetHistory(
+   getAssetHistory(
     id: string,
     interval: Interval,
     startDate: Date,
-    endDate: Date): Promise<History> {
+    endDate: Date): Observable<AssetHistory> {
 
     const startUnix = startDate.getTime() / 1000;
     const endUnix = endDate.getTime() / 1000;
-    return await this.httpClient.get<History>(`${this.BaseUrl}/${id}/history?interval=${interval}&start=${startUnix}&end=${endUnix}`)
-      .toPromise();
+    return this.httpClient.get<AssetHistory>(`${this.BaseUrl}/${id}/history?interval=${interval}&start=${startUnix}&end=${endUnix}`);
   }
 }
 

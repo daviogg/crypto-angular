@@ -151,7 +151,7 @@ export class AssetDetailComponent implements OnInit {
         r.data.forEach(item => {
           const stringHour = item.date.getUTCHours();
           const ampm = stringHour >= 12 ? 'PM' : 'AM';
-          this.lineChartLabels.push(`${stringHour}${ampm}`)
+          this.lineChartLabels.push(`${stringHour}${ampm}`);
         });
       });
 

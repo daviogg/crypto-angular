@@ -63,4 +63,3 @@ export interface TableAssetItem {
   volume: string;
   change: string;
 }
-

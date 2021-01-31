@@ -28,5 +28,3 @@ export class CryptoService {
     return this.httpClient.get<AssetHistory>(`${this.BaseUrl}/${id}/history?interval=${interval}&start=${startUnix}&end=${endUnix}`);
   }
 }
-
-

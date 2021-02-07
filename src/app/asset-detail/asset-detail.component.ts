@@ -11,9 +11,7 @@ import { CryptoService } from '../services/crypto.service';
   styleUrls: ['./asset-detail.component.scss']
 })
 export class AssetDetailComponent implements OnInit {
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'BTC' }
-  ];
+  public lineChartData: ChartDataSets[] = [];
 
   public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -109,10 +107,17 @@ export class AssetDetailComponent implements OnInit {
         console.log(r);
         r.data.forEach(item => {
           this.populateXAxis(item);
+          this.populateData(item);
         });
       });
 
+    console.log(this.lineChartData);
     console.log(history);
+  }
+
+  private populateData(item: HistoryItem): void {
+    this.lineChartData[0].label = 'BTC';
+    this.lineChartData[0].data.push(item.priceUsd);
   }
 
   private populateXAxis(item: HistoryItem): void {

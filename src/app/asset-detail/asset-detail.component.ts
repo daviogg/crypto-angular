@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
-import { AssetHistory, Interval } from '../models/assets';
+import { AssetHistory, HistoryItem, Interval } from '../models/assets';
 import { CryptoService } from '../services/crypto.service';
 
 @Component({
@@ -108,17 +108,21 @@ export class AssetDetailComponent implements OnInit {
       .subscribe((r: AssetHistory) => {
         console.log(r);
         r.data.forEach(item => {
-          const date = item.date;
-          const stringHour = new Date(date).getUTCHours();
-          const ampm = stringHour >= 12 ? 'PM' : 'AM';
-          const dateElement = `${stringHour}${ampm}`;
-          if (this.lineChartLabels.indexOf(dateElement) === -1){
-            this.lineChartLabels.push(`${stringHour}${ampm}`);
-          }
+          this.populateXAxis(item);
         });
       });
 
     console.log(history);
+  }
+
+  private populateXAxis(item: HistoryItem): void {
+    const date = item.date;
+    const stringHour = new Date(date).getUTCHours();
+    const ampm = stringHour >= 12 ? 'PM' : 'AM';
+    const dateElement = `${stringHour}${ampm}`;
+    if (this.lineChartLabels.indexOf(dateElement) === -1) {
+      this.lineChartLabels.push(`${stringHour}${ampm}`);
+    }
   }
 
   private getYesterday(): Date {

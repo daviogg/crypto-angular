@@ -106,10 +106,15 @@ export class AssetDetailComponent implements OnInit {
 
     const history = this.service.getAssetHistory(id, Interval.m5, yesterday, today)
       .subscribe((r: AssetHistory) => {
+        console.log(r);
         r.data.forEach(item => {
-          const stringHour = item.date.getUTCHours();
+          const date = item.date;
+          const stringHour = new Date(date).getUTCHours();
           const ampm = stringHour >= 12 ? 'PM' : 'AM';
-          this.lineChartLabels.push(`${stringHour}${ampm}`);
+          const dateElement = `${stringHour}${ampm}`;
+          if (this.lineChartLabels.indexOf(dateElement) === -1){
+            this.lineChartLabels.push(`${stringHour}${ampm}`);
+          }
         });
       });
 

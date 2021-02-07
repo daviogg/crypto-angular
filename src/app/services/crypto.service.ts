@@ -23,9 +23,9 @@ export class CryptoService {
     startDate: Date,
     endDate: Date): Observable<AssetHistory> {
 
-    const startUnix = startDate.getTime() / 1000;
-    const endUnix = endDate.getTime() / 1000;
+    const startUnix = startDate.getTime();
+    const endUnix = endDate.getTime();
     const enumInterval = Interval[interval];
-    return this.httpClient.get<AssetHistory>(`${this.BaseUrl}/${id.toLowerCase}/history?interval=${enumInterval}&start=${startUnix}&end=${endUnix}`);
+    return this.httpClient.get<AssetHistory>(`${this.BaseUrl}/${id.toLowerCase()}/history?interval=${enumInterval}&start=${startUnix}&end=${endUnix}`);
   }
 }

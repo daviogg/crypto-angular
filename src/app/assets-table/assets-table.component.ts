@@ -49,7 +49,7 @@ export class AssetsTableComponent implements OnInit, AfterViewInit {
   }
 
   NavigateTo(row: any): void {
-    this.router.navigate([`detail/${row.name}`]);
+    this.router.navigate([`detail/${row.name.toLowerCase()}`]);
   }
 
 }

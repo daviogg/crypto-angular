@@ -12,8 +12,8 @@ import { CryptoService } from '../services/crypto.service';
 })
 export class AssetDetailComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [];
-
   public lineChartLabels: Label[] = [];
+
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -75,6 +75,7 @@ export class AssetDetailComponent implements OnInit {
   constructor(private activatedroute: ActivatedRoute, private service: CryptoService) { }
 
   ngOnInit(): void {
+    this.lineChartLabels = [];
     this.populateChartData();
   }
 
@@ -101,10 +102,12 @@ export class AssetDetailComponent implements OnInit {
     const today = new Date();
     const yesterday = this.getYesterday();
     const id = this.activatedroute.snapshot.paramMap.get('id');
-
+    this.lineChartData[0] = {
+      data: [],
+      label: id
+    };
     const history = this.service.getAssetHistory(id, Interval.m5, yesterday, today)
       .subscribe((r: AssetHistory) => {
-        console.log(r);
         r.data.forEach(item => {
           this.populateXAxis(item);
           this.populateData(item);
@@ -116,7 +119,6 @@ export class AssetDetailComponent implements OnInit {
   }
 
   private populateData(item: HistoryItem): void {
-    this.lineChartData[0].label = 'BTC';
     this.lineChartData[0].data.push(item.priceUsd);
   }
 
@@ -135,5 +137,4 @@ export class AssetDetailComponent implements OnInit {
     d.setDate(d.getDate() - 1);
     return d;
   }
-
 }
